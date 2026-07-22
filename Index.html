@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVVO Habilidades | Telefônica Vivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-dark: #000040;
+            --purple-deep: #400080;
+            --purple-vivo: #8000C0;
+            --violet-vibrant: #9939EB;
+            --violet-light: #B948FD;
+            --magenta: #C040C0;
+            --text-light: #E0AAFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--purple-deep) 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* HOME BUTTON */
+        .home-button {
+            position: fixed;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
+            z-index: 1100;
+            width: 48px;
+            height: 48px;
+            background: rgba(153, 57, 235, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(185, 72, 253, 0.4);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background: rgba(153, 57, 235, 0.5);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(153, 57, 235, 0.6);
+        }
+
+        .home-button svg {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 0 8px rgba(153, 57, 235, 0.8));
+        }
+
+        .home-button::after {
+            content: 'Home: Portal ConecTT';
+            position: absolute;
+            left: calc(100% + 15px);
+            background: rgba(153, 57, 235, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 8px;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transform: translateX(-10px);
+            border: 1px solid rgba(185, 72, 253, 0.5);
+        }
+
+        .home-button:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(0, 0, 64, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(153, 57, 235, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 3rem 0 6rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-right: auto;
+        }
+
+        .navbar-logo {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .navbar-title {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .navbar-title-main {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--violet-vibrant), var(--violet-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .navbar-title-sub {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .navbar-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .navbar-tabs button {
+            background: transparent;
+            border: 1px solid rgba(153, 57, 235, 0.3);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar-tabs button:hover {
+            background: rgba(153, 57, 235, 0.2);
+            border-color: var(--violet-vibrant);
+        }
+
+        .navbar-tabs button.active {
+            background: linear-gradient(135deg, var(--purple-vivo), var(--violet-vibrant));
+            border-color: var(--violet-light);
+            color: white;
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 80px;
+            min-height: 50vh;
+            max-height: 50vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                var(--navy-dark) 0%, 
+                var(--purple-deep) 30%, 
+                var(--purple-vivo) 60%, 
+                var(--violet-vibrant) 100%);
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-logo-container {
+            flex-shrink: 0;
+        }
+
+        .hero-logo {
+            width: 240px;
+            height: 240px;
+            object-fit: contain;
+            animation: pulseGlow 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(153, 57, 235, 0.6));
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px rgba(153, 57, 235, 0.6));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(185, 72, 253, 0.8));
+                transform: scale(1.05);
+            }
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, white, var(--text-light), var(--violet-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-quote {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-style: italic;
+            color: white;
+            font-size: 1rem;
+            line-height: 1.6;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* TAB BAR */
+        .tab-bar {
+            position: sticky;
+            top: 80px;
+            background: rgba(0, 0, 64, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(153, 57, 235, 0.3);
+            z-index: 900;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 0.75rem;
+            overflow-x: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-bar::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .tab-bar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-bar::-webkit-scrollbar-thumb {
+            background: var(--violet-vibrant);
+            border-radius: 2px;
+        }
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(153, 57, 235, 0.3);
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-button:hover {
+            background: rgba(153, 57, 235, 0.2);
+            border-color: var(--violet-vibrant);
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--purple-vivo), var(--violet-vibrant));
+            border-color: var(--violet-light);
+            color: white;
+            box-shadow: 0 4px 15px rgba(153, 57, 235, 0.4);
+        }
+
+        /* CONTENT AREA */
+        .content-area {
+            position: relative;
+            min-height: calc(100vh - 80px - 50vh - 60px);
+        }
+
+        .tab-panel {
+            display: none;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.5s ease;
+            min-height: calc(100vh - 80px - 50vh - 60px);
+            max-height: calc(100vh - 80px - 50vh - 60px);
+            overflow-y: auto;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .tab-panel::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-panel::-webkit-scrollbar-thumb {
+            background: var(--violet-vibrant);
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .panel-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .panel-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, white, var(--violet-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .panel-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* GLASS CARD */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(153, 57, 235, 0.3);
+            border-color: rgba(153, 57, 235, 0.4);
+        }
+
+        .glass-card-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .glass-card-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .glass-card-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: justify;
+        }
+
+        /* GRID */
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .grid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(153, 57, 235, 0.3);
+            border-color: var(--violet-vibrant);
+        }
+
+        .grid-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--violet-light);
+        }
+
+        .grid-card-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* MISSION VISION */
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .bordered-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 4px solid var(--violet-vibrant);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .bordered-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 32px rgba(153, 57, 235, 0.3);
+        }
+
+        .bordered-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--violet-light);
+        }
+
+        .bordered-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* FACILITATORS */
+        .facilitators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .facilitator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .facilitator-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple-vivo), var(--violet-vibrant));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .facilitator-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(153, 57, 235, 0.6);
+        }
+
+        .facilitator-name {
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        /* STRATEGY */
+        .strategy-pentagon {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .strategy-pentagon svg {
+            width: 200px;
+            height: 200px;
+            filter: drop-shadow(0 0 20px rgba(153, 57, 235, 0.5));
+        }
+
+        .paixoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .paixao-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .paixao-card:hover {
+            transform: translateX(10px);
+            border-color: var(--violet-vibrant);
+            box-shadow: 0 8px 32px rgba(153, 57, 235, 0.3);
+        }
+
+        .paixao-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .paixao-text {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* CRONOGRAMA */
+        .cronograma-section {
+            margin-bottom: 3rem;
+        }
+
+        .cronograma-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cronograma-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-complete {
+            background: rgba(0, 133, 77, 0.2);
+            border: 1px solid #00854d;
+            color: #00c875;
+        }
+
+        .badge-planned {
+            background: rgba(255, 203, 0, 0.2);
+            border: 1px solid #ffcb00;
+            color: #ffcb00;
+        }
+
+        .cronograma-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cronograma-item {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cronograma-item:hover {
+            transform: translateX(10px);
+            border-color: var(--violet-vibrant);
+        }
+
+        .cronograma-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cronograma-content {
+            flex: 1;
+        }
+
+        .cronograma-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .cronograma-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .fluxo-pills {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .fluxo-pill {
+            background: linear-gradient(135deg, var(--purple-vivo), var(--violet-vibrant));
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid var(--violet-light);
+            box-shadow: 0 4px 15px rgba(153, 57, 235, 0.3);
+        }
+
+        /* RESULTADOS */
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .resultado-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .resultado-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(153, 57, 235, 0.3);
+            border-color: var(--violet-vibrant);
+        }
+
+        .resultado-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--violet-vibrant);
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .resultado-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* MATERIAIS */
+        .material-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .material-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .material-header:hover {
+            background: rgba(153, 57, 235, 0.2);
+        }
+
+        .material-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .material-icon {
+            font-size: 2rem;
+        }
+
+        .material-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .material-link {
+            background: linear-gradient(135deg, var(--purple-vivo), var(--violet-vibrant));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .material-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(153, 57, 235, 0.4);
+        }
+
+        .material-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .material-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .material-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .material-body.open {
+            max-height: 500px;
+        }
+
+        .material-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--violet-vibrant);
+        }
+
+        .material-item-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .material-item-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 12px 28px;
+            border: 2px solid var(--violet-vibrant);
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--violet-vibrant);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(153, 57, 235, 0.4);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: rgba(0, 0, 64, 0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(153, 57, 235, 0.3);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--violet-vibrant), var(--violet-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .home-button {
+                left: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .home-button svg {
+                width: 30px;
+                height: 30px;
+            }
+
+            .navbar {
+                padding: 0 1rem 0 4rem;
+                height: 70px;
+            }
+
+            .navbar-logo {
+                width: 45px;
+                height: 45px;
+            }
+
+            .navbar-title-main {
+                font-size: 1rem;
+            }
+
+            .navbar-title-sub {
+                font-size: 0.65rem;
+            }
+
+            .navbar-tabs {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 1.5rem;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .hero-logo {
+                width: 180px;
+                height: 180px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .tab-bar {
+                top: 70px;
+                padding: 0.75rem 1rem;
+            }
+
+            .tab-panel {
+                padding: 2rem 1rem;
+                min-height: calc(100vh - 70px - 50vh - 55px);
+                max-height: calc(100vh - 70px - 50vh - 55px);
+            }
+
+            .panel-title {
+                font-size: 2rem;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+
+            .grid-2x2,
+            .mission-vision-grid,
+            .facilitators-grid,
+            .paixoes-grid,
+            .resultados-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HOME BUTTON -->
+    <a href="https://apps.powerapps.com/play/e/default-9744600e-3e04-492e-baa1-25ec245c6f10/a/4aa4c7b7-64af-4681-8b4e-a510ee403da4?tenantId=9744600e-3e04-492e-baa1-25ec245c6f10&hint=7d484e3d-763f-4e94-a463-03e6076a3afe&sourcetime=1753302589242&hidenavbar=true#" class="home-button" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 22V12H15V22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="https://telefonica-vivo-bunch.monday.com/protected_static/27172168/resources/3097803550/image-from-clipboard.png" alt="IVVO Logo" class="navbar-logo">
+            <div class="navbar-title">
+                <div class="navbar-title-main">IVVO HABILIDADES</div>
+                <div class="navbar-title-sub">Diretoria Tributária · Vivo</div>
+            </div>
+        </div>
+        <div class="navbar-tabs">
+            <button class="active" onclick="showTab('sobre')">Sobre</button>
+            <button onclick="showTab('objetivo')">Objetivo</button>
+            <button onclick="showTab('missao')">Missão & Visão</button>
+            <button onclick="showTab('facilitadores')">Facilitadores</button>
+            <button onclick="showTab('estrategia')">Estratégia</button>
+            <button onclick="showTab('cronograma')">Cronograma</button>
+            <button onclick="showTab('resultados')">Resultados</button>
+            <button onclick="showTab('materiais')">Materiais</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-gradient"></div>
+        <canvas id="particles-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-logo-container">
+                <img src="https://telefonica-vivo-bunch.monday.com/protected_static/27172168/resources/3097803550/image-from-clipboard.png" alt="IVVO Logo" class="hero-logo">
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title">PROGRAMA IVVO HABILIDADES</h1>
+                <p class="hero-subtitle">Diretoria Tributária · Telefônica Vivo · 2026</p>
+                <div class="hero-quote">
+                    "Transformando conhecimento em estratégia, processos em resultados e pessoas em agentes de mudança."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+        <button class="tab-button active" onclick="showTab('sobre')">Sobre</button>
+        <button class="tab-button" onclick="showTab('objetivo')">Objetivo</button>
+        <button class="tab-button" onclick="showTab('missao')">Missão & Visão</button>
+        <button class="tab-button" onclick="showTab('facilitadores')">Facilitadores</button>
+        <button class="tab-button" onclick="showTab('estrategia')">Estratégia</button>
+        <button class="tab-button" onclick="showTab('cronograma')">Cronograma</button>
+        <button class="tab-button" onclick="showTab('resultados')">Resultados</button>
+        <button class="tab-button" onclick="showTab('materiais')">Materiais</button>
+    </div>
+
+    <!-- CONTENT AREA -->
+    <div class="content-area">
+        <!-- PAINEL 1: SOBRE -->
+        <div id="sobre" class="tab-panel active">
+            <div class="container">
+                <div class="glass-card" style="max-width: 900px; margin: 0 auto;">
+                    <div class="glass-card-icon">🎓</div>
+                    <h2 class="glass-card-title">O Programa</h2>
+                    <p class="glass-card-text">
+                        O Programa IVVO Habilidades é uma iniciativa estratégica da Diretoria Tributária da Telefônica Vivo, focada no desenvolvimento contínuo de competências técnicas, processuais e estratégicas. Através de uma abordagem integrada e colaborativa, buscamos formar profissionais multiskill capazes de atuar de forma preventiva e com visão end-to-end nos processos tributários da companhia.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL 2: OBJETIVO -->
+        <div id="objetivo" class="tab-panel">
+            <div class="container">
+                <div class="panel-header">
+                    <h2 class="panel-title">Objetivo</h2>
+                    <p class="panel-subtitle">Pilares fundamentais do programa</p>
+                </div>
+                <div class="grid-2x2">
+                    <div class="grid-card">
+                        <div class="grid-card-icon">📊</div>
+                        <h3 class="grid-card-title">Tributação</h3>
+                        <p class="grid-card-text">Aprofundar conhecimentos técnicos em legislação tributária, compliance e gestão fiscal estratégica.</p>
+                    </div>
+                    <div class="grid-card">
+                        <div class="grid-card-icon">⚙️</div>
+                        <h3 class="grid-card-title">Processos</h3>
+                        <p class="grid-card-text">Compreender e otimizar processos tributários end-to-end, identificando oportunidades de melhoria contínua.</p>
+                    </div>
+                    <div class="grid-card">
+                        <div class="grid-card-icon">🔭</div>
+                        <h3 class="grid-card-title">Visão Estratégica</h3>
+                        <p class="grid-card-text">Desenvolver pensamento estratégico voltado aos objetivos de negócio e transformação digital.</p>
+                    </div>
+                    <div class="grid-card">
+                        <div class="grid-card-icon">🏢</div>
+                        <h3 class="grid-card-title">Visão Corporativa</h3>
+                        <p class="grid-card-text">Ampliar a compreensão sobre a estrutura organizacional e o impacto tributário nas diversas áreas da companhia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL 3: MISSÃO & VISÃO -->
+        <div id="missao" class="tab-panel">
+            <div class="container">
+                <div class="panel-header">
+                    <h2 class="panel-title">Missão & Visão</h2>
+                </div>
+                <div class="mission-vision-grid">
+                    <div class="bordered-card">
+                        <h3>Missão</h3>
+                        <p>Capacitar os profissionais da Diretoria Tributária com conhecimentos técnicos, processuais e estratégicos, promovendo uma cultura de aprendizado contínuo e transformação digital que gere valor sustentável para a Telefônica Vivo.</p>
+                    </div>
+                    <div class="bordered-card">
+                        <h3>Visão</h3>
+                        <p>Ser referência em desenvolvimento de talentos tributários, formando profissionais multiskill com visão integrada de negócio, capazes de atuar de forma preventiva e estratégica na transformação tributária da companhia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL 4: FACILITADORES -->
+        <div id="facilitadores" class="tab-panel">
+            <div class="container">
+                <div class="panel-header">
+                    <h2 class="panel-title">Facilitadores</h2>
+                    <p class="panel-subtitle">Agentes Estratégicos de Transformação</p>
+                </div>
+                <div class="facilitators-grid">
+                    <div class="facilitator">
+                        <div class="facilitator-avatar">GC</div>
+                        <div class="facilitator-name">Guilherme Carneiro</div>
+                    </div>
+                    <div class="facilitator">
+                        <div class="facilitator-avatar">PP</div>
+                        <div class="facilitator-name">Pedro Praxedes</div>
+                    </div>
+                    <div class="facilitator">
+                        <div class="facilitator-avatar">VO</div>
+                        <div class="facilitator-name">Victor Oliveira</div>
+                    </div>
+                    <div class="facilitator">
+                        <div class="facilitator-avatar">DS</div>
+                        <div class="facilitator-name">Daniel Silva</div>
+                    </div>
+                    <div class="facilitator">
+                        <div class="facilitator-avatar">FD</div>
+                        <div class="facilitator-name">Fabio Demianczuk</div>
+                    </div>
+                    <div class="facilitator">
+                        <div class="facilitator-avatar">MS</div>
+                        <div class="facilitator-name">Mariana Simões</div>
+                    </div>
+                    <div class="facilitator">
+                        <div class="facilitator-avatar">AM</div>
+                        <div class="facilitator-name">Ariani Moreira</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL 5: ESTRATÉGIA -->
+        <div id="estrategia" class="tab-panel">
+            <div class="container">
+                <div class="panel-header">
+                    <h2 class="panel-title">Estratégia</h2>
+                    <p class="panel-subtitle">Apoio RH + Vivo Skills</p>
+                </div>
+                <div class="strategy-pentagon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="pentagonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8000C0;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#B948FD;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="100,20 190,75 160,170 40,170 10,75" fill="url(#pentagonGradient)" stroke="#B948FD" stroke-width="3"/>
+                        <text x="100" y="90" text-anchor="middle" fill="white" font-size="18" font-weight="700" font-family="Poppins">5 PAIXÕES</text>
+                        <text x="100" y="110" text-anchor="middle" fill="white" font-size="16" font-weight="600" font-family="Poppins">VIVO</text>
+                    </svg>
+                </div>
+                <div class="paixoes-grid">
+                    <div class="paixao-card">
+                        <div class="paixao-icon">⚡</div>
+                        <div class="paixao-text">Dá para ser mais simples</div>
+                    </div>
+                    <div class="paixao-card">
+                        <div class="paixao-icon">🔍</div>
+                        <div class="paixao-text">Ser curioso pega bem</div>
+                    </div>
+                    <div class="paixao-card">
+                        <div class="paixao-icon">🎯</div>
+                        <div class="paixao-text">Resultado é comigo</div>
+                    </div>
+                    <div class="paixao-card">
+                        <div class="paixao-icon">👥</div>
+                        <div class="paixao-text">Gente é a nossa melhor tecnologia</div>
+                    </div>
+                    <div class="paixao-card">
+                        <div class="paixao-icon">⏰</div>
+                        <div class="paixao-text">O tempo do cliente é agora</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL 6: CRONOGRAMA -->
+        <div id="cronograma" class="tab-panel">
+            <div class="container">
+                <div class="panel-header">
+                    <h2 class="panel-title">Cronograma</h2>
+                    <p class="panel-subtitle">Maio a Setembro 2026</p>
+                </div>
+
+                <div class="cronograma-section">
+                    <div class="cronograma-header">
+                        <h3 style="font-size: 1.5rem; margin: 0;">1º Case</h3>
+                        <span class="cronograma-badge badge-complete">✓ Completo</span>
+                    </div>
+                    <div class="cronograma-list">
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">✓</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Catalogação (Fixa/Móvel)</div>
+                                <div class="cronograma-date">23 de Junho de 2026</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">✓</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Produtos (B2B/B2C)</div>
+                                <div class="cronograma-date">22 de Julho de 2026</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">✓</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Data Lake</div>
+                                <div class="cronograma-date">30 de Julho de 2026</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">✓</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Compras</div>
+                                <div class="cronograma-date">03 de Agosto de 2026</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cronograma-section">
+                    <div class="cronograma-header">
+                        <h3 style="font-size: 1.5rem; margin: 0;">2º Case</h3>
+                        <span class="cronograma-badge badge-planned">⟳ Planejado</span>
+                    </div>
+                    <div class="cronograma-list">
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">○</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">CDG - Controle de Gestão</div>
+                                <div class="cronograma-date">Em planejamento</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">○</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Marketing (Portfolio, CH, Electronic)</div>
+                                <div class="cronograma-date">Em planejamento</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">○</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Pricing</div>
+                                <div class="cronograma-date">Em planejamento</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">○</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Redes (Interna/Externa)</div>
+                                <div class="cronograma-date">Em planejamento</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">○</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">Comportamento</div>
+                                <div class="cronograma-date">Em planejamento</div>
+                            </div>
+                        </div>
+                        <div class="cronograma-item">
+                            <div class="cronograma-icon">○</div>
+                            <div class="cronograma-content">
+                                <div class="cronograma-title">BOOTS</div>
+                                <div class="cronograma-date">Em planejamento</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fluxo-pills">
+                    <div class="fluxo-pill">CA</div>
+                    <div style="color: var(--violet-light); font-size: 1.5rem;">→</div>
+                    <div class="fluxo-pill">PR</div>
+                    <div style="color: var(--violet-light); font-size: 1.5rem;">→</div>
+                    <div class="fluxo-pill">CO</div>
+                    <div style="color: var(--violet-light); font-size: 1.5rem;">→</div>
+                    <div class="fluxo-pill">DA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL 7: RESULTADOS -->
+        <div id="resultados" class="tab-panel">
+            <div class="container">
+                <div class="panel-header">
+                    <h2 class="panel-title">Resultados Esperados</h2>
+                    <p class="panel-subtitle">Impactos da transformação</p>
+                </div>
+                <div class="resultados-grid">
+                    <div class="resultado-card">
+                        <div class="resultado-number">I</div>
+                        <p class="resultado-text">Pensamento de negócio voltado à visão estratégica</p>
+                    </div>
+                    <div class="resultado-card">
+                        <div class="resultado-number">II</div>
+                        <p class="resultado-text">Ampliar visão macro E2E sobre processos e projetos</p>
+                    </div>
+                    <div class="resultado-card">
+                        <div class="resultado-number">III</div>
+                        <p class="resultado-text">Atuação preventiva: identificar causa, efeito, impacto em TAX</p>
+                    </div>
+                    <div class="resultado-card">
+                        <div class="resultado-number">IV</div>
+                        <p class="resultado-text">Profissional multiskill: técnico, processual e digital</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL 8: MATERIAIS -->
+        <div id="materiais" class="tab-panel">
+            <div class="container">
+                <div class="panel-header">
+                    <h2 class="panel-title">Acesse os Materiais</h2>
+                </div>
+
+                <div class="material-card">
+                    <div class="material-header" onclick="toggleMaterial()">
+                        <div class="material-header-left">
+                            <span class="material-icon">📦</span>
+                            <span class="material-title">Catalogação — Fixa & Móvel</span>
+                        </div>
+                        <a href="https://telefonicacorp.sharepoint.com/:f:/s/IvvoHabilidades/IgCyxogCot9zRqwCaOr8xlGtAVw122lTfVv-Awlg66rwQPs?e=52wrCG" target="_blank" class="material-link" onclick="event.stopPropagation()">
+                            Acessar →
+                        </a>
+                        <span class="material-toggle" id="material-toggle">▼</span>
+                    </div>
+                    <div class="material-body" id="material-body">
+                        <div class="material-content">
+                            <div class="material-item">
+                                <span class="material-item-icon">🚀</span>
+                                <p class="material-item-text">Catalogação no IVVO é onde o dado vira estratégia — qualidade no cadastro, zero retrabalho e mais eficiência!</p>
+                            </div>
+                            <div class="material-item">
+                                <span class="material-item-icon">🔗</span>
+                                <p class="material-item-text">Integramos SAP, tributário e negócio para garantir materiais padronizados e confiáveis.</p>
+                            </div>
+                            <div class="material-item">
+                                <span class="material-item-icon">🧠</span>
+                                <p class="material-item-text">Com governança e visão ponta a ponta, antecipamos impactos e aceleramos resultados.</p>
+                            </div>
+                            <div class="material-item">
+                                <span class="material-item-icon">📦</span>
+                                <p class="material-item-text">Da Fixa ao Móvel, cada SKU nasce com controle, inteligência e escala.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="https://forms.office.com/e/XxbZBHP7tH" target="_blank" class="btn-outline">
+                        📝 Avaliar o Programa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="https://telefonica-vivo-bunch.monday.com/protected_static/27172168/resources/3097803550/image-from-clipboard.png" alt="IVVO Logo" class="footer-logo">
+                <span class="footer-title">IVVO HABILIDADES</span>
+            </div>
+            <p class="footer-text">Tax Transformation CoE · Telefônica Vivo · 2026 | Diretoria Tributária</p>
+        </div>
+    </footer>
+
+    <script>
+        // PARTICLES ANIMATION
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight * 0.5;
+
+        const particles = [];
+        const particleCount = 80;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(185, 72, 253, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight * 0.5;
+        });
+
+        // TAB NAVIGATION
+        function showTab(tabId) {
+            // Hide all panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // Show selected panel
+            document.getElementById(tabId).classList.add('active');
+
+            // Update tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Find and activate the clicked button
+            const clickedButtons = document.querySelectorAll(`[onclick="showTab('${tabId}')"]`);
+            clickedButtons.forEach(btn => btn.classList.add('active'));
+
+            // Scroll to top of content area
+            window.scrollTo({
+                top: document.querySelector('.tab-bar').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        // MATERIAL TOGGLE
+        function toggleMaterial() {
+            const body = document.getElementById('material-body');
+            const toggle = document.getElementById('material-toggle');
+            
+            if (body.classList.contains('open')) {
+                body.classList.remove('open');
+                toggle.classList.remove('open');
+            } else {
+                body.classList.add('open');
+                toggle.classList.add('open');
+            }
+        }
+
+        // Initialize first tab
+        document.addEventListener('DOMContentLoaded', () => {
+            showTab('sobre');
+        });
+    </script>
+</body>
+</html>
