@@ -1000,7 +1000,37 @@
         }
     </style>
 </head>
-<body>
+<body<script>
+(function () {
+
+    const email = prompt(
+        "🔒 Portal IVVO Habilidades\n\nInforme seu e-mail corporativo:"
+    );
+
+    if (!email || !email.toLowerCase().endsWith("@telefonica.com")) {
+
+        document.body.innerHTML = `
+        <div style="
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            background:#000040;
+            color:white;
+            font-family:Arial;
+            text-align:center;
+        ">
+            <h1>🔒 Acesso Restrito</h1>
+            <p>Portal exclusivo para colaboradores Telefônica.</p>
+        </div>
+        `;
+
+        throw new Error("Acesso bloqueado");
+    }
+
+})();
+</script>
     <!-- HOME BUTTON -->
     <a href="https://apps.powerapps.com/play/e/default-9744600e-3e04-492e-baa1-25ec245c6f10/a/4aa4c7b7-64af-4681-8b4e-a510ee403da4?tenantId=9744600e-3e04-492e-baa1-25ec245c6f10&hint=7d484e3d-763f-4e94-a463-03e6076a3afe&sourcetime=1753302589242&hidenavbar=true#" class="home-button" target="_blank">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1236,21 +1266,21 @@
                             <div class="cronograma-icon">✓</div>
                             <div class="cronograma-content">
                                 <div class="cronograma-title">Produtos (B2B/B2C)</div>
-                                <div class="cronograma-date">22 de Julho de 2026</div>
+                                <div class="cronograma-date">Julho de 2026</div>
                             </div>
                         </div>
                         <div class="cronograma-item">
                             <div class="cronograma-icon">✓</div>
                             <div class="cronograma-content">
                                 <div class="cronograma-title">Data Lake</div>
-                                <div class="cronograma-date">30 de Julho de 2026</div>
+                                <div class="cronograma-date">Agosto de 2026</div>
                             </div>
                         </div>
                         <div class="cronograma-item">
                             <div class="cronograma-icon">✓</div>
                             <div class="cronograma-content">
                                 <div class="cronograma-title">Compras</div>
-                                <div class="cronograma-date">03 de Agosto de 2026</div>
+                                <div class="cronograma-date">Setembro de 2026</div>
                             </div>
                         </div>
                     </div>
