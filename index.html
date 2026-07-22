@@ -1001,35 +1001,7 @@
     </style>
 </head>
 <body<script>
-    <script>
 
-const usuariosPermitidos = [
-    "pedro.praxedes@telefonica.com",
-    "guilherme.carneiro@telefonica.com",
-    "victor.oliveira@telefonica.com"
-];
-
-const email = prompt("Digite seu e-mail corporativo:");
-
-if (!usuariosPermitidos.includes(email.toLowerCase())) {
-
-    document.body.innerHTML =
-    "<h1 style='margin-top:200px;text-align:center'>🔒 Usuário não autorizado</h1>";
-
-    throw new Error("Acesso negado");
-}
-
-const senha = prompt("Senha:");
-
-if (senha !== "tax@2026") {
-
-    document.body.innerHTML =
-    "<h1 style='margin-top:200px;text-align:center'>🔒 Senha inválida</h1>";
-
-    throw new Error("Acesso negado");
-}
-
-</script>
 (function () {
 
     const email = prompt(
