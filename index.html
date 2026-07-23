@@ -277,7 +277,8 @@ var(--violet-vibrant) 100%
             width: 240px;
             height: 240px;
             object-fit: contain;
-            animation: pulseGlow 3s ease-in-out infinite;
+            animation: pulseGlow 3s ease-in-out infinite,
+floating 6s ease-in-out infinite;
             filter: drop-shadow(0 0 30px rgba(153, 57, 235, 0.6));
         }
 
@@ -389,12 +390,11 @@ var(--violet-vibrant) 100%
         }
 
         .tab-panel {
-            display: none;
-            padding: 3rem 2rem;
-            animation: fadeIn 0.5s ease;
-           min-height: calc(100vh - 80px - 30vh);
-           max-height: calc(100vh - 80px - 30vh);
-            overflow-y: auto;
+         display: none;
+padding: 3rem 2rem;
+animation: fadeIn 0.5s ease;
+min-height: 900px;
+overflow: visible;
         }
 
         .tab-panel.active {
@@ -1042,6 +1042,30 @@ color: #ff6b6b;
                 grid-template-columns: 1fr;
             }
         }
+
+        body::before {
+
+content: "";
+
+position: fixed;
+
+inset: 0;
+
+pointer-events: none;
+
+z-index: -1;
+
+ 
+
+background:
+
+radial-gradient(circle at 20% 20%, rgba(185,72,253,.18), transparent 30%),
+
+radial-gradient(circle at 80% 40%, rgba(153,57,235,.12), transparent 25%),
+
+radial-gradient(circle at 50% 80%, rgba(128,0,192,.15), transparent 30%);
+
+}
     </style>
 </head>
 <body>
@@ -1459,16 +1483,16 @@ color: #ff6b6b;
         canvas.height = window.innerHeight * 0.5;
 
         const particles = [];
-        const particleCount = 180;
+        const particleCount = 260;
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
+                this.size = Math.random() * 1.5 + 0.5;
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.2;
+                this.opacity = Math.random() * 0.8 + 0.2;
             }
 
             update() {
