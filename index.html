@@ -26,7 +26,19 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--purple-deep) 100%);
+           background: linear-gradient(
+
+135deg,
+
+var(--navy-dark) 0%,
+
+var(--purple-deep) 35%,
+
+var(--purple-vivo) 70%,
+
+var(--violet-vibrant) 100%
+
+);
             color: white;
             overflow-x: hidden;
         }
@@ -98,7 +110,13 @@
             left: 0;
             right: 0;
             height: 80px;
-            background: rgba(0, 0, 64, 0.85);
+          background: linear-gradient(
+90deg,
+rgba(0,0,64,0.90) 0%,
+rgba(64,0,128,0.90) 50%,
+rgba(128,0,192,0.85) 100%
+
+);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(153, 57, 235, 0.3);
             z-index: 1000;
@@ -201,11 +219,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, 
-                var(--navy-dark) 0%, 
-                var(--purple-deep) 30%, 
-                var(--purple-vivo) 60%, 
-                var(--violet-vibrant) 100%);
+            background:
+
+radial-gradient(
+
+circle at top right,
+
+rgba(185,72,253,0.35) 0%,
+
+transparent 35%
+
+),
+linear-gradient(
+
+135deg,
+var(--navy-dark) 0%,
+var(--purple-deep) 35%,
+var(--purple-vivo) 70%,
+var(--violet-vibrant) 100%
+);
             animation: gradientShift 15s ease infinite;
             z-index: 0;
         }
